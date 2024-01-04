@@ -1,4 +1,4 @@
-package com.hundredpayapp
+package com.hundredpay
 
 import android.app.Application
 import com.facebook.react.PackageList
@@ -11,6 +11,8 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
+// import org.devio.rn.splashscreen.SplashScreenReactPackage;
+// import androidx.lifecycle.newInstance
 
 class MainApplication : Application(), ReactApplication {
 
@@ -19,6 +21,8 @@ class MainApplication : Application(), ReactApplication {
         override fun getPackages(): List<ReactPackage> {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+           // Declare as var
+          // packages += SplashScreenReactPackage() // Add package
           return PackageList(this).packages
         }
 

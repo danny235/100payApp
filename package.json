@@ -1,5 +1,5 @@
 {
-  "name": "hundredpayapp",
+  "name": "hundredpay",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -22,6 +22,7 @@
     "react-native-reanimated": "^3.6.1",
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.29.0",
+    "react-native-splash-screen": "^3.3.0",
     "react-redux": "^9.0.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
