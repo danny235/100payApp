@@ -5,50 +5,20 @@
  * @format
  */
 
-import React, {useEffect} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import type {PropsWithChildren} from 'react';
-import {
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import SplashScreen from 'react-native-splash-screen'
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { OnboardingScreen } from './screens';
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import React, {useEffect} from 'react';
+import {Platform, StyleSheet, useColorScheme} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import SplashScreen from 'react-native-splash-screen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import NavigationContent from './routes/AppStacks';
+
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
-
-const Stack = createNativeStackNavigator()
-
-
-function NavigationContent(): React.JSX.Element {
-  return (
-    <Stack.Navigator screenOptions={{
-      headerShown: false,
-    }}>
-      <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-    </Stack.Navigator>
-  )
-}
-
-
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -57,20 +27,21 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  useEffect(()=> {
-    if(Platform.OS === "android") SplashScreen.hide()
-  }, [])
+  useEffect(() => {
+    if (Platform.OS === 'android') SplashScreen.hide();
+  }, []);
 
   return (
-    <NavigationContainer
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <GestureHandlerRootView style={{flex: 1}}>
+          
             
-          >
-            <SafeAreaProvider>
-              <GestureHandlerRootView style={{ flex: 1 }}>
-                <NavigationContent />
-              </GestureHandlerRootView>
-            </SafeAreaProvider>
-          </NavigationContainer>
+          <NavigationContent />
+      
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
 

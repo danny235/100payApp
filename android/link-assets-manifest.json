@@ -2,28 +2,24 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "assets/fonts/Inter-Black.ttf",
-      "sha1": "f79fa58ace5f55e338c99bf71e7e0702841df6f2"
+      "path": "assets/fonts/SpaceGrotesk-Bold.ttf",
+      "sha1": "b2aa14fa837cf3ed5e647c87906e88238d88c548"
     },
     {
-      "path": "assets/fonts/Inter-Bold.ttf",
-      "sha1": "47ff07c75746682133b81e7ac0537ce50a4c9916"
+      "path": "assets/fonts/SpaceGrotesk-Light.ttf",
+      "sha1": "37a7dffc1d580f94f9204b8a90f6c60bed9f500e"
     },
     {
-      "path": "assets/fonts/Inter-ExtraBold.ttf",
-      "sha1": "c9b3d2f2449ab2c67ff075f806973fa3d7e104b3"
+      "path": "assets/fonts/SpaceGrotesk-Medium.ttf",
+      "sha1": "53a82dc42149eb575e8e38dcd0c618899e7e8b8f"
     },
     {
-      "path": "assets/fonts/Inter-ExtraLight.ttf",
-      "sha1": "f78ee1d6cbfc64f656247c604ef270ef116abbf5"
+      "path": "assets/fonts/SpaceGrotesk-Regular.ttf",
+      "sha1": "d1666e3605d713802650ab26c0914238ca124274"
     },
     {
-      "path": "assets/fonts/Inter-SemiBold.ttf",
-      "sha1": "5e0c44e57e7e090252d79f622899e67585bb892c"
-    },
-    {
-      "path": "assets/fonts/Inter-Thin.ttf",
-      "sha1": "757805e615c974756646e54ceff8e409d5c47207"
+      "path": "assets/fonts/SpaceGrotesk-SemiBold.ttf",
+      "sha1": "0f5ec8c385c42b65cd8bcb494f26e9c282d6a107"
     }
   ]
 }
