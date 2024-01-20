@@ -41,7 +41,7 @@ export default function RootAuth() {
             </LightText>
           </View>
           <View style={styles.coloredWrapper}>
-
+              
           </View>
         </Pressable>
       </View>
