@@ -39,7 +39,7 @@ export default function Onboarding({navigation}: OnboardingI): React.JSX.Element
     if (currentIndex < slides.length - 1) {
       slidesRef.current?.scrollToIndex({index: currentIndex + 1});
     } else {
-      console.log('last item');
+      navigation.navigate('RootAuth');
     }
   };
   return (
