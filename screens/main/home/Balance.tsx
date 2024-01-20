@@ -26,9 +26,9 @@ export default function Balance(): React.JSX.Element {
       </Pressable>
       <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
         <BoldText style={{fontSize: 28 / fontScale, color: Colors.black}}>
-          20 $pay = 60,000
+           60,000
         </BoldText>
-        <LightText style={{color: Colors.black}}>NGN</LightText>
+        <LightText style={{color: Colors.black}}>$PAY</LightText>
       </View>
     </View>
   );
