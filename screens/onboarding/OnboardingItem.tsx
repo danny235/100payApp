@@ -1,8 +1,9 @@
 import React, {PropsWithChildren} from 'react';
-import {Image, Text, View, useWindowDimensions} from 'react-native';
+import {Image, ImageBackground, Text, View, useWindowDimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Colors} from '../../components/Colors';
-import { BoldText, LightText } from '../../components/styles/styledComponents';
+import { BoldText, Indicator, IndicatorsWrappers, LightText } from '../../components/styles/styledComponents';
+import Circle from "../../assets/images/circles.png"
 
 type OnboardingItemT = PropsWithChildren<{
   item: {
@@ -11,13 +12,16 @@ type OnboardingItemT = PropsWithChildren<{
     description: string;
     image: any;
   };
+  currentIndex: number
 }>;
 
 export default function OnboardingItem({
+  currentIndex,
   item,
 }: OnboardingItemT): React.JSX.Element {
   const {height, width, fontScale} = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  
   return (
     <View
       style={{
@@ -25,23 +29,28 @@ export default function OnboardingItem({
         paddingHorizontal: 14,
         paddingTop: insets.top,
       }}>
-      <View
+      <ImageBackground source={Circle} resizeMode='cover'
         style={{
           alignItems: 'center',
           justifyContent: 'center',
+          height: height / 2,
         }}>
         <Image
-          style={{width: '100%', aspectRatio: 1.9 / 2}}
+          style={{width: '100%', aspectRatio: 1.9 / 5}}
           resizeMode="contain"
           source={item.image}
         />
+      </ImageBackground>
+      <View>
+        
       </View>
-      <View style={{padding: 20, gap: 10}}>
+      <View style={{paddingHorizontal: 20, gap: 10, paddingVertical: 20, width: "100%"}}>
+      
         <BoldText
           style={{
             fontSize: 25 / fontScale,
             color: Colors.primary,
-            textAlign: 'center',
+
             flexShrink: 1,
             lineHeight: 40,
           }}>
@@ -49,10 +58,8 @@ export default function OnboardingItem({
         </BoldText>
         <LightText
           style={{
-            
             fontSize: 16 / fontScale,
             color: Colors.black,
-            textAlign: 'center',
             flexShrink: 1,
             lineHeight: 30,
           }}>

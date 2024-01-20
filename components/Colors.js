@@ -2,6 +2,7 @@ export const Colors = {
   white: '#ffffff',
   black: '#000000',
   primary: '#F20732',
+  primaryLight: '#FDDAE0',
   secondary: '#D3D3F7',
   neutral8: '#374151',
   whiteShade: '#FBFBFB',
@@ -11,4 +12,5 @@ export const Colors = {
   error07: '#DC2626',
   success200: '#DCFCE7',
   error02: '#FEE2E2',
+  ash: '#E5E7EB',
 };

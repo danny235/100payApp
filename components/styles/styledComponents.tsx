@@ -21,17 +21,18 @@ const PrimaryButton = styled(Pressable)`
 
 const IndicatorsWrappers = styled.View`
     width: 100%;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
     flex-direction: row;
+    bottom: 265px;
     gap: 5px;
+    left: 35px;
 `
 
 const Indicator = styled.View<IndicatorT>`
-    background-color: ${({isActive})=>(isActive ? Colors.primary : Colors.secondary)};
-    width: ${({isActive})=> (isActive ? "30px" :"10px")};
+    background-color: ${({isActive})=>(isActive ? Colors.primary : Colors.primaryLight)};
+    width: ${({isActive})=> (isActive ? "15px" :"8px")};
     border-radius: 10px;
-    height: 10px;
+    height: 8px;
 `;
 
 const BoldText = styled.Text`

@@ -16,8 +16,14 @@ import {
   PrimaryButton,
 } from '../../components/styles/styledComponents';
 import OnboardingItem from './OnboardingItem';
+import { Button } from '../../components/Button/Button';
+import { NavigationProp } from '@react-navigation/native';
 
-export default function Onboarding(): React.JSX.Element {
+interface OnboardingI {
+  navigation: NavigationProp<any>
+}
+
+export default function Onboarding({navigation}: OnboardingI): React.JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef<Animated.Value>(new Animated.Value(0)).current;
   const slidesRef = useRef<FlatList>(null);
@@ -40,20 +46,17 @@ export default function Onboarding(): React.JSX.Element {
     <View
       style={{position: 'relative', backgroundColor: Colors.white, flex: 1}}>
       <View>
-        <Pressable
-          style={{
-            alignItems: 'flex-end',
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-          }}>
-          <Text style={{fontFamily: 'Inter-Bold', color: Colors.primary}}>
-            Skip
-          </Text>
-        </Pressable>
-
+        <IndicatorsWrappers>
+          <Indicator isActive={currentIndex === 0} />
+          <Indicator isActive={currentIndex === 1} />
+          <Indicator isActive={currentIndex === 2} />
+          <Indicator isActive={currentIndex === 3} />
+        </IndicatorsWrappers>
         <FlatList
           data={slides}
-          renderItem={({item}) => <OnboardingItem item={item} />}
+          renderItem={({item}) => (
+            <OnboardingItem currentIndex={currentIndex} item={item} />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
           bounces={false}
@@ -70,19 +73,26 @@ export default function Onboarding(): React.JSX.Element {
           viewabilityConfig={viewConfig}
           ref={slidesRef}
         />
-        {currentIndex === 3 ? (
-          <View style={{paddingHorizontal: 20}}>
-            <PrimaryButton>
-              <BoldText style={{color: Colors.white}}>Get Started</BoldText>
-            </PrimaryButton>
-          </View>
-        ) : (
-          <IndicatorsWrappers>
-            <Indicator isActive={currentIndex === 0} />
-            <Indicator isActive={currentIndex === 1} />
-            <Indicator isActive={currentIndex === 2} />
-          </IndicatorsWrappers>
-        )}
+
+        <View
+          style={{
+            paddingHorizontal: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            gap: 10,
+            marginTop: "auto"
+          }}>
+          <Button variant="secondary" isLarge={true} isWide={false} onPress={()=>navigation.navigate("RootAuth")}>
+            <BoldText style={{color: Colors.black, fontSize: 16 / fontScale}}>
+              Skip
+            </BoldText>
+          </Button>
+          <Button variant="primary" isWide={false} isLarge={true} onPress={()=> scrollTo()}>
+            <BoldText style={{color: Colors.white, fontSize: 16 / fontScale}}>
+              Next
+            </BoldText>
+          </Button>
+        </View>
       </View>
     </View>
   );
