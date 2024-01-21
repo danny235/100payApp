@@ -18,12 +18,12 @@ const StyledInput = styled.TextInput<TextInputProps>`
   background-color: ${Colors.white};
 `;
 
-interface InputProps {
+export interface InputProps {
   label: string;
   formikProps: any; // Adjust the type as per your Formik props
   formikKey: string;
   onChangeText?: (text: string) => void;
-}
+} 
 
 const Input: React.FC<InputProps> = ({
   label,

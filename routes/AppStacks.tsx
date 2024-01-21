@@ -5,6 +5,7 @@ import {
   OnboardingScreen,
   RootAuth,
   SettingsScreen,
+  SignIn,
 } from '../screens';
 import MainTabs from './MainTabs';
 
@@ -60,6 +61,7 @@ export default function NavigationContent(): React.JSX.Element {
       <Stack.Group>
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="RootAuth" component={RootAuth} />
+        <Stack.Screen name="SignIn" component={SignIn} />
       </Stack.Group>
       <Stack.Screen
         name="MainTabs"

@@ -5,8 +5,13 @@ import PayLogo from '../../assets/images/payLogo.png';
 import { BoldText, LightText, MediumText } from '../../components/styles/styledComponents';
 import { Colors } from '../../components/Colors';
 import { AddIcon, ArrowForwardIcon } from '../../components/SvgAssets';
+import { NavigationProp } from '@react-navigation/native';
 
-export default function RootAuth() {
+interface RootAuthI {
+  navigation: NavigationProp<any>;
+}
+
+export default function RootAuth({navigation}: RootAuthI) {
     const {fontScale} = useWindowDimensions()
   return (
     <CustomView>
@@ -19,7 +24,7 @@ export default function RootAuth() {
           alignSelf: 'center',
           justifyContent: 'center',
           marginTop: 20,
-          marginBottom: 60
+          marginBottom: 60,
         }}
       />
 
@@ -53,7 +58,9 @@ export default function RootAuth() {
             <AddIcon />
           </View>
         </Pressable>
-        <Pressable style={styles.clickBox}>
+        <Pressable
+          onPress={() => navigation.navigate('SignIn')}
+          style={styles.clickBox}>
           <View style={styles.textWrapper}>
             <BoldText style={{fontSize: 15 / fontScale, flexShrink: 1}}>
               Sign in to your account
