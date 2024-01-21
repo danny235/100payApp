@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import {Formik} from 'formik';
+import React, {useState} from 'react';
 import {Image, Pressable, View, useWindowDimensions} from 'react-native';
-import PayLogo from '../../assets/images/payLogo.png';
-import CustomView from '../../components/Views/CustomView';
-import { ArrowBackwardIcon, ArrowRightIcon, EyeIcon, EyeLineIcon } from '../../components/SvgAssets';
-import { MediumText, RegularText } from '../../components/styles/styledComponents';
 import * as yup from 'yup';
-import { Button } from '../../components/Button/Button';
+import PayLogo from '../../assets/images/payLogo.png';
+import {Button} from '../../components/Button/Button';
+import {Colors} from '../../components/Colors';
+import {ArrowBackwardIcon, ArrowRightIcon, EyeIcon, EyeLineIcon} from '../../components/SvgAssets';
+import CustomView from '../../components/Views/CustomView';
+import {MediumText, RegularText} from '../../components/styles/styledComponents';
+import { NavigationProp } from '@react-navigation/native';
 import Input from '../../components/Input';
-import { Formik } from 'formik';
-import { Colors } from '../../components/Colors';
+import { TextInput } from 'react-native-gesture-handler';
 
 const loginSchema = yup.object().shape({
   email: yup.string().required().label('Email').email(),
@@ -19,9 +21,13 @@ const loginSchema = yup.object().shape({
     .min(8, 'Seems a bit short'),
 });
 
-export default function SignIn(): React.JSX.Element {
-  const [showPassword, setShowPassword] = useState<boolean>(false)
-  const {fontScale} = useWindowDimensions()
+interface RootAuthI {
+  navigation: NavigationProp<any>;
+}
+
+export default function SignIn({navigation}: RootAuthI): React.JSX.Element {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const {fontScale} = useWindowDimensions();
   return (
     <CustomView>
       <View
@@ -31,17 +37,26 @@ export default function SignIn(): React.JSX.Element {
           marginTop: 20,
           marginBottom: 60,
         }}>
-        <ArrowBackwardIcon />
-        <Image
-          resizeMode="contain"
-          source={PayLogo}
+        <Pressable onPress={()=>navigation.goBack()}>
+          <ArrowBackwardIcon />
+        </Pressable>
+        <View
           style={{
-            width: '30%',
-            aspectRatio: 2.4 / 0.9,
-            alignSelf: 'center',
+            alignItems: 'center',
             justifyContent: 'center',
-          }}
-        />
+            width: '100%',
+          }}>
+          <Image
+            resizeMode="contain"
+            source={PayLogo}
+            style={{
+              width: '30%',
+              aspectRatio: 2.4 / 0.9,
+              alignSelf: 'center',
+              justifyContent: 'center',
+            }}
+          />
+        </View>
       </View>
 
       <MediumText>Sign In To Your Account</MediumText>
@@ -55,10 +70,10 @@ export default function SignIn(): React.JSX.Element {
         }}
         validationSchema={loginSchema}>
         {formikProps => (
-          <View>
+          <View style={{gap: 20}}>
             <View>
-              <View>
-                <Input
+              
+                {/* <Input
                   placeholder="johndoe@example.com"
                   formikProps={formikProps}
                   formikKey="email"
@@ -66,18 +81,19 @@ export default function SignIn(): React.JSX.Element {
                   autoCapitalize="none"
                   keyboardType="email-address"
                   label="Email"
-                />
-              </View>
+                /> */}
+              
               <View style={{position: 'relative'}}>
-                <Input
+                {/* <Input
                   formikProps={formikProps}
                   formikKey="password"
                   placeholder="*********"
                   value={formikProps.values.password}
                   secureTextEntry={showPassword ? false : true}
-                  style={{paddingRight: 80}}
+                  // style={{paddingRight: 80}}
                   label="Password"
-                />
+                /> */}
+                <TextInput />
                 <Pressable
                   style={{
                     position: 'absolute',
@@ -85,9 +101,7 @@ export default function SignIn(): React.JSX.Element {
                     right: 30,
                   }}
                   onPress={() =>
-                    setShowPassword(prevState => {
-                      return !prevState;
-                    })
+                    setShowPassword(!showPassword)
                   }>
                   {showPassword ? <EyeLineIcon /> : <EyeIcon />}
                 </Pressable>
@@ -100,7 +114,7 @@ export default function SignIn(): React.JSX.Element {
                 </RegularText>
               </Pressable>
             </View>
-            <View style={{gap: 40}}>
+            <View style={{marginLeft: "auto"}}>
               {/* <View style={{flexDirection: 'row', gap: 5}}>
                 <MediumText fontSize={15 / fontScale}>
                   Don't have an account?

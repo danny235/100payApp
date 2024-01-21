@@ -19,13 +19,14 @@ const StyledButton = styled.Pressable<ButtonProps>`
   border: ${({variant}) =>
     variant === 'primary' ? 'none' : `2px solid ${Colors.ash}`};
   width: ${({isWide}) => (isWide ? '100%' : '48%')};
-  border-radius: 20px;
+  border-radius: 10px;
   font-weight: 500;
   font-size: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  flex-direction: row;
 `;
 
 export function Button({

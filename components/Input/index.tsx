@@ -1,37 +1,35 @@
-import React from 'react';
-import {View, Text, StyleSheet, TextInputProps} from 'react-native';
+import React, { ReactNode } from 'react';
+import {View, Text, StyleSheet, TextInputProps, TextInput} from 'react-native';
 import {useWindowDimensions} from 'react-native';
 import styled from "styled-components/native"
 import { Colors } from '../Colors';
-import { RegularText } from '../styles/styledComponents';
+import { MediumText, RegularText } from '../styles/styledComponents';
 
-
-const StyledInput = styled.TextInput<TextInputProps>`
-  border-radius: 5px;
-  width: 100%;
-  padding: 10px;
-  aspect-ratio: 2 / 0.3;
-  font-family: DMSans-Medium;
-  font-size: 15px;
-  align-items: center;
-  justify-content: center;
-  background-color: ${Colors.white};
-`;
-
-export interface InputProps {
+interface InputProps extends TextInputProps {
   label: string;
   formikProps: any; // Adjust the type as per your Formik props
   formikKey: string;
   onChangeText?: (text: string) => void;
 } 
 
-const Input: React.FC<InputProps> = ({
+const StyledInput = styled.TextInput`
+  // border-radius: 5px;
+  // width: 100%;
+  // padding: 10px;
+  // font-family: SpaceGrotesk-Medium;
+  // font-size: 15px;
+  
+  // background-color: ${Colors.white};
+`;
+
+
+function Input({
   label,
   formikProps,
   formikKey,
   onChangeText,
   ...rest
-}) => {
+}: InputProps): React.JSX.Element {
   const inputStyles: {borderColor?: string} = {};
   const {fontScale} = useWindowDimensions();
 
@@ -41,7 +39,7 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <FieldWrapper formikKey={formikKey} formikProps={formikProps} label={label}>
-      <StyledInput
+      <TextInput
         onChangeText={
           onChangeText ? onChangeText : formikProps.handleChange(formikKey)
         }
@@ -55,29 +53,29 @@ const Input: React.FC<InputProps> = ({
 };
 
 interface FieldWrapperProps {
-  children: React.ReactNode;
+  children: ReactNode;
   label: string;
   formikProps: any; // Adjust the type as per your Formik props
   formikKey: string;
 }
 
-const FieldWrapper: React.FC<FieldWrapperProps> = ({
+function FieldWrapper ({
   children,
   label,
   formikProps,
   formikKey,
-}) => {
+}: FieldWrapperProps): React.JSX.Element {
   const {fontScale} = useWindowDimensions();
 
   return (
     <View>
-      <RegularText style={{fontSize:15 / fontScale}}>
+      <MediumText style={{fontSize:15 / fontScale}}>
         {label}
-      </RegularText>
+      </MediumText>
       {children}
-      <Text style={styles.error}>
+      <RegularText style={styles.error}>
         {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
-      </Text>
+      </RegularText>
     </View>
   );
 };
